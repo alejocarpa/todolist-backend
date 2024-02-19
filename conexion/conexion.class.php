@@ -1,6 +1,6 @@
 <?php
 
-class conexion {
+class Conexion {
 
 	/* ================================================
     * Informacion de la base de datos
@@ -8,7 +8,7 @@ class conexion {
     static public function infoDatabase(){
 
         $infoDB = array(
-            "database" => "helpro",
+            "database" => "todolist",
             "user" => "admin",
             "pass" => "4dm1n2018*"
         );
@@ -25,9 +25,9 @@ class conexion {
         try{
             
             $link = new PDO(
-                "mysql:host=localhost;dbname=".Connection::infoDatabase()['database'],
-                Connection::infoDatabase()['user'],
-                Connection::infoDatabase()['pass']
+                "mysql:host=localhost;dbname=".Conexion::infoDatabase()['database'],
+                Conexion::infoDatabase()['user'],
+                Conexion::infoDatabase()['pass']
                 );
             
             $link->exec("set names utf8");
