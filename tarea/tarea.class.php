@@ -8,7 +8,9 @@ class Tarea{
 		
 		$link = Conexion::connect();
 
-		$stmt = $link->prepare("SELECT * FROM tarea");
+		$stmt = $link->prepare("SELECT *, nombre_estado 
+                                FROM tarea t
+                                LEFT JOIN estado e on (e.id_estado = t.id_estado_tarea)");
 
 		$stmt->execute();
 		
@@ -25,7 +27,6 @@ class Tarea{
 	    $datos = json_decode($datos);	  	   
 	    
 	    $nombre = ucfirst($datos->nombre);
-	    $descripcion = ucfirst($datos->descripcion);
 	    $nombre_usuario = ucwords($datos->nombre_usuario);
 	    
 	    $nombre = htmlentities($nombre, ENT_QUOTES);
@@ -36,10 +37,9 @@ class Tarea{
 	    
 	    $link = Conexion::connect();
 	    
-	    $stmt = $link->prepare("INSERT INTO tarea (nombre_tarea, descripcion_tarea, nombre_usuario_tarea, fecha_creacion_tarea) VALUES (:nombre_tarea, :descripcion_tarea, :nombre_usuario_tarea, current_date)");
+	    $stmt = $link->prepare("INSERT INTO tarea (nombre_tarea, nombre_usuario_tarea, fecha_creacion_tarea) VALUES (:nombre_tarea, :nombre_usuario_tarea, current_date)");
 	    
 	    $stmt->bindParam(':nombre_tarea', $nombre);
-	    $stmt->bindParam(':descripcion_tarea', $descripcion);
 	    $stmt->bindParam(':nombre_usuario_tarea', $nombre_usuario);
 	    // Excecute
 	    $stmt->execute();
