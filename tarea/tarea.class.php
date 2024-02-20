@@ -69,7 +69,7 @@ class Tarea{
 	    
 	    $link = Conexion::connect();
 	    
-	    $stmt = $link->prepare("UPDATE tarea set id_estado_tarea = :estado WHERE id_tarea = :tarea");
+	    $stmt = $link->prepare("UPDATE tarea set id_estado_tarea = :estado, fecha_modificacion_tarea = current_date WHERE id_tarea = :tarea");
 	    
 	    $stmt->bindParam(':estado', $estado);
 	    $stmt->bindParam(':tarea', $id_tarea);
