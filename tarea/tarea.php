@@ -10,7 +10,9 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
     
     $datosArray = $_tarea->buscarDatos($_GET);
 
-    Api::fncResponse($datosArray);
+    if( $datosArray != "informe" ){
+        Api::fncResponse($datosArray);
+    }
 
 }else if($_SERVER['REQUEST_METHOD'] == "POST"){
     

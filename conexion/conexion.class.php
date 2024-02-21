@@ -9,8 +9,8 @@ class Conexion {
 
         $infoDB = array(
             "database" => "todolist",
-            "user" => "admin",
-            "pass" => "4dm1n2018*"
+            "user" => "usertodolist",
+            "pass" => "1nf0rm4t1c4*2024"
         );
 
         return $infoDB;
